@@ -58,11 +58,11 @@ class Config:
 
         # Check key format (critical protection)
         # Commented out for testing with test keys only
-        # if not self.stripe_prod_key.startswith("sk_live_"):
-        #     raise ConfigError(
-        #         f"STRIPE_SECRET_KEY must be a PRODUCTION key (sk_live_*). "
-        #         f"Found: {self.stripe_prod_key[:10]}..."
-        #     )
+        if not self.stripe_prod_key.startswith("sk_live_"):
+            raise ConfigError(
+                f"STRIPE_SECRET_KEY must be a PRODUCTION key (sk_live_*). "
+                f"Found: {self.stripe_prod_key[:10]}..."
+            )
 
         if not self.stripe_test_key.startswith("sk_test_"):
             raise ConfigError(
